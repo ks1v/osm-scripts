@@ -1,0 +1,9 @@
+[out:json][timeout:25];
+// gather results
+(
+  nwr["place"="neighbourhood"]({{bbox}});
+  nwr["place"="suburb"]({{bbox}});
+  nwr["place"="quarter"]({{bbox}});
+);
+// print results
+out geom;
