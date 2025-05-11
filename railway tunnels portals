@@ -1,0 +1,19 @@
+[out:json][timeout:25];
+
+// Step 1: Select railway ways that are tunnels
+way["railway"]["tunnel"="yes"]({{bbox}})->.tunnel_ways;
+
+// Step 2: Get all nodes of these tunnel ways
+node(w.tunnel_ways)->.tunnel_nodes;
+
+// Step 3: Select railway ways that are not tunnels
+way["railway"]["tunnel"!~"."]({{bbox}})->.non_tunnel_ways;
+
+// Step 4: Get all nodes of these non-tunnel ways
+node(w.non_tunnel_ways)->.non_tunnel_nodes;
+
+// Step 5: Find nodes common to both tunnel and non-tunnel ways
+node.tunnel_nodes.non_tunnel_nodes->.transition_nodes;
+
+// Step 6: Output the transition nodes
+.transition_nodes out body;
