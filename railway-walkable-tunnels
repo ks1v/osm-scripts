@@ -1,0 +1,8 @@
+[out:json][timeout:25];
+(
+  way["tunnel"="yes"]["railway"]["highway"="footway"]({{bbox}});
+  way["tunnel"="yes"]["railway"]["highway"="path"]({{bbox}});
+);
+out body;
+>;
+out skel qt;
